@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Song(models.Model):
     title = models.CharField(max_length=150, unique=True)
-    composer = models.CharField(max_length=150)
+    composer = models.CharField(max_length=150,)
     arranger = models.CharField(max_length=150, default="This is the original version")
-    info = models.TextField()
+    info = models.TextField(blank=True)
     musician = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="songs"
     )
