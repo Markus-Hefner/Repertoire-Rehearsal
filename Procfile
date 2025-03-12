@@ -1,1 +1,1 @@
-web: gunicorn codestar.wsgi
+web: gunicorn repertoire_rehearsal.wsgi
