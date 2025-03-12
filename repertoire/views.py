@@ -1,6 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
+from .models import Song
 
 # Create your views here.
-def my_repertoire(request):
-   return HttpResponse("Here will be your repertoire")
+
+
+class SongList(generic.ListView):
+   queryset = Song.objects.all()
+   template_name = "song_list.html"
