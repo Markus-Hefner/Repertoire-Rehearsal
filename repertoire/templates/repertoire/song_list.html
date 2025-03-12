@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<!-- song_list.html content ends here -->
+ 
 <h2>Repertoire</h2>
 {% for song in object_list %}
 <h2>{{song.title}}</h2>
@@ -9,5 +11,5 @@
 <p>Arranged by {{song.arranger}}</p>
 {% endfor %}
 
-    <!-- index.html content ends here -->
+<!-- song_list.html content ends here -->
 {% endblock %}
