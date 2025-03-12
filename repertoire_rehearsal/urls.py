@@ -19,6 +19,6 @@ from django.urls import path, include
 from repertoire import views as repertoire_views
 
 urlpatterns = [
-    path('repertoire/', repertoire_views.repertoire, name='repertoire'),
+    path('repertoire/', repertoire_views.my_repertoire, name='repertoire'),
     path('admin/', admin.site.urls),
 ]
