@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repertoire</title>
-</head>
+{% block content %}
 
-<body>
-    <h1>Repertoire</h1>
-    {% for song in object_list %}
-    <h2>{{song.title}}</h2>
-    <p>by {{song.composer}}</p>
-    <p>Arranged by {{song.arranger}}</p>
-    {% endfor %}
-</body>
+<h2>Repertoire</h2>
+{% for song in object_list %}
+<h2>{{song.title}}</h2>
+<p>by {{song.composer}}</p>
+<p>Arranged by {{song.arranger}}</p>
+{% endfor %}
 
-</html>
+    <!-- index.html content ends here -->
+{% endblock %}
