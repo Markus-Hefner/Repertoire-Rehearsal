@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
+from django.contrib import messages
 from .models import Song
 from .forms import AddSongForm
 
@@ -16,11 +17,15 @@ def SongList(request):
    songs = queryset
 
    if request.method == "POST":
-    add_song_form = AddSongForm(data=request.POST)
-    if add_song_form.is_valid():
-        song = add_song_form.save(commit=False)
-        song.musician = request.user
-        song.save()
+      add_song_form = AddSongForm(data=request.POST)
+      if add_song_form.is_valid():
+         song = add_song_form.save(commit=False)
+         song.musician = request.user
+         song.save()
+         messages.add_message(
+            request, messages.SUCCESS,
+            'Song added!'
+    )
 
    add_song_form = AddSongForm()
 
