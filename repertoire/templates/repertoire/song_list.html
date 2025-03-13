@@ -3,13 +3,21 @@
 {% block content %}
 
 <!-- song_list.html content ends here -->
- 
-<h2>Repertoire</h2>
-{% for song in object_list %}
-<h2>{{song.title}}</h2>
+
+{% if user.is_authenticated %}
+<p class="text-end m-3">You are logged in as {{ user }}</p>
+<h2>Your Repertoire</h2>
+{% for song in songs %}
+{% if song.musician == user %}
+<h3>{{song.title}}</h3>
 <p>by {{song.composer}}</p>
 <p>Arranged by {{song.arranger}}</p>
+{% endif %}
 {% endfor %}
+{% else %}
+<p class="text-end m-3">Sorry, you are currently not logged in<br>Please log in to see your repertoire.</p>
+{% endif %}
+
 
 <!-- song_list.html content ends here -->
 {% endblock %}
