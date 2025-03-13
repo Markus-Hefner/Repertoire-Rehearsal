@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
 {% block content %}
 
 <!-- song_list.html content ends here -->
 
 {% if user.is_authenticated %}
 <p class="text-end m-3">You are logged in as {{ user }}</p>
+<h2>Add a new song</h2>
+<form id="commentForm" method="post" style="margin-top: 1.3em;">
+    {{ add_song_form | crispy }}
+    {% csrf_token %}
+    <button id="addButton" type="submit" class="btn btn-signup btn-lg">Add song</button>
+</form>
 <h2>Your Repertoire</h2>
 {% for song in songs %}
 {% if song.musician == user %}
