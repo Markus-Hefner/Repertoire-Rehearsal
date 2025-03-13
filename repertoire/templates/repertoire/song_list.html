@@ -6,13 +6,13 @@
 <!-- song_list.html content ends here -->
 
 {% if user.is_authenticated %}
-<p class="text-end m-3">You are logged in as {{ user }}</p>
+<p>You are logged in as {{ user }}</p>
 <!-- Add a new song -->
 <h2>Add a new song</h2>
-<form id="addSongForm" method="post" style="margin-top: 1.3em;">
+<form id="addSongForm" method="post">
     {{ add_song_form | crispy }}
     {% csrf_token %}
-    <button id="addButton" type="submit" class="btn btn-signup btn-lg">Add song</button>
+    <button id="addButton" type="submit">Add song</button>
 </form>
 <h2>Your Repertoire</h2>
 {% for song in songs %}
@@ -26,7 +26,7 @@
 {% endif %}
 {% endfor %}
 {% else %}
-<p class="text-end m-3">Sorry, you are currently not logged in<br>Please log in to see your repertoire.</p>
+<p>Sorry, you are currently not logged in<br>Please log in to see your repertoire.</p>
 {% endif %}
 
 <!-- song_list.html content ends here -->
