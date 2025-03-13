@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <p>Alright, let's practice:</p>
+    <h2>{{ song.title }}</h2>
+    <!-- Post author goes before the | the post's created date goes after -->
+    <h3>by {{ song.composer }} | arranged by {{ song.arranger }}</h3>
+    <p>Additional information {{ song.info | safe}}</p>
+    <p>Added {{ song.created_on }}</p>
+</div>
+
+{% endblock content %}

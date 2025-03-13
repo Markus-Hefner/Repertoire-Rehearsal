@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.contrib import messages
 from .models import Song
@@ -11,7 +11,7 @@ from .forms import AddSongForm
 #    queryset = Song.objects.all()
 #    template_name = "song_list.html"
 
-def SongList(request):
+def song_list(request):
 
    queryset = Song.objects.all()
    songs = queryset
@@ -37,4 +37,19 @@ def SongList(request):
          "add_song_form": add_song_form,
       },
    )
+
+def song_rehearsal(request, id):
+    
+   # queryset = Song.objects.filter(musician==User)
+   queryset = Song.objects.all()
+   song = get_object_or_404(queryset, id=id)
+
+   return render(
+      request,
+      "repertoire/song_rehearsal.html",
+      {
+         "song": song,
+      },
+   )
+
 

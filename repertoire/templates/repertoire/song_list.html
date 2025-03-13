@@ -17,15 +17,17 @@
 <h2>Your Repertoire</h2>
 {% for song in songs %}
 {% if song.musician == user %}
+<a href="{% url 'song_rehearsal' song.id %}">
 <h3>{{song.title}}</h3>
 <p>by {{song.composer}}</p>
 <p>Arranged by {{song.arranger}}</p>
+<p>Arranged by {{song.id}}</p>
+</a>
 {% endif %}
 {% endfor %}
 {% else %}
 <p class="text-end m-3">Sorry, you are currently not logged in<br>Please log in to see your repertoire.</p>
 {% endif %}
-
 
 <!-- song_list.html content ends here -->
 {% endblock %}
