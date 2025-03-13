@@ -9,6 +9,7 @@
     <h3>by {{ song.composer }} | arranged by {{ song.arranger }}</h3>
     <p>Additional information {{ song.info | safe}}</p>
     <p>Added {{ song.created_on }}</p>
+    <p>Due again on {{ song.next_due_date }}</p>
 </div>
 
 {% endblock content %}

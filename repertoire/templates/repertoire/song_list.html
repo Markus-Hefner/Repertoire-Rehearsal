@@ -21,7 +21,7 @@
 <h3>{{song.title}}</h3>
 <p>by {{song.composer}}</p>
 <p>Arranged by {{song.arranger}}</p>
-<p>Arranged by {{song.id}}</p>
+<p>Due again on {{ song.next_due_date }}</p>
 </a>
 {% endif %}
 {% endfor %}
