@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from .models import Song
 from .forms import AddSongForm
 
@@ -12,10 +13,8 @@ from .forms import AddSongForm
 #    queryset = Song.objects.all()
 #    template_name = "song_list.html"
 
-def song_list(request):
 
-   queryset = Song.objects.all()
-   songs = queryset
+def song_list(request):
 
    if request.method == "POST":
       add_song_form = AddSongForm(data=request.POST)
@@ -26,9 +25,27 @@ def song_list(request):
          messages.add_message(
             request, messages.SUCCESS,
             'Song added!'
-    )
-
+         )
+   
    add_song_form = AddSongForm()
+
+   if not request.user.is_authenticated:
+      return render(
+      request,
+      "repertoire/song_list.html"
+      )
+   else:
+      queryset = Song.objects.all()
+      songs = queryset
+      return render(
+         request,
+         "repertoire/song_list.html",
+         {
+            "songs": songs,
+            "add_song_form": add_song_form,
+         },
+      )
+
 
    return render(
       request,
@@ -39,6 +56,8 @@ def song_list(request):
       },
    )
 
+
+@login_required
 def song_rehearsal(request, id):
     
    # queryset = Song.objects.filter(musician==User)
@@ -54,6 +73,7 @@ def song_rehearsal(request, id):
    )
 
 
+@login_required
 def song_edit(request, id):
    # queryset = Song.objects.all()
    # song = get_object_or_404(queryset, id=id)
@@ -81,6 +101,7 @@ def song_edit(request, id):
    )
 
 
+@login_required
 def song_delete_warning(request, id):
    song = Song.objects.get(pk=id)
 
@@ -93,6 +114,7 @@ def song_delete_warning(request, id):
    )
 
 
+@login_required
 def song_delete(request, id):
    song = Song.objects.get(pk=id)
 
