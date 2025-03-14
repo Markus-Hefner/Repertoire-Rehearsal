@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<form id="addSongForm" method="post">
+    {{ add_song_form | crispy }}
+    {% csrf_token %}
+    <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Update</button> 
+
+{% endblock content %}
+
+{% block js %}
+<script src="{% static 'js/songs.js' %}"></script>
+{% endblock %}

@@ -54,23 +54,30 @@ def song_rehearsal(request, id):
    )
 
 
-@login_required
 def song_edit(request, id):
-   """
-   View to edit songs
-   """
+   # queryset = Song.objects.all()
+   # song = get_object_or_404(queryset, id=id)
+
+   song = Song.objects.get(pk=id)
+   add_song_form = AddSongForm(request.POST or None, instance=song)
+
    if request.method == "POST":
-
-      queryset = Song.objects.filter(user=request.user)
-      song = get_object_or_404(queryset, id=id)
-      comment = get_object_or_404(Comment, pk=comment_id)
-      add_song_form = AddSongForm(data=request.POST, instance=song)
-
       if add_song_form.is_valid() and song.musician == request.user:
-         song = add_song_form.save(commit=False)
-         comment.save()
-         messages.add_message(request, messages.SUCCESS, 'Changes saved!')
+         add_song_form.save()
+         messages.add_message(request, messages.SUCCESS, 'Edit successful!')
+         return HttpResponseRedirect(reverse('song_rehearsal', args=[id]))
       else:
-         messages.add_message(request, messages.ERROR, 'Sorry, could not save changes.')
+         messages.add_message(request, messages.ERROR,
+                              'Sorry, edit failed. Please try again!')
+         return HttpResponseRedirect(reverse('song_rehearsal', args=[id]))
+   
+   return render(
+      request,
+      "repertoire/song_edit.html",
+      {
+         "song": song,
+         "add_song_form": add_song_form,
+      },
+   )
 
-   return HttpResponseRedirect(reverse('song_rehearsal', args=[id]))
+

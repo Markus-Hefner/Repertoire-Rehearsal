@@ -5,4 +5,4 @@ from django import forms
 class AddSongForm(forms.ModelForm):
     class Meta:
         model = Song
-        fields = ('title', 'composer', 'arranger', 'info')
+        fields = ('title', 'composer', 'arranger', 'info', 'target_bpm')

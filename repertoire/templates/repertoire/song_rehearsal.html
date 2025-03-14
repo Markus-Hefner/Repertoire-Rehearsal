@@ -1,15 +1,29 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
 <div>
-    <p>Alright, let's practice:</p>
-    <h2>{{ song.title }}</h2>
-    <!-- Post author goes before the | the post's created date goes after -->
-    <h3>by {{ song.composer }} | arranged by {{ song.arranger }}</h3>
-    <p>Additional information {{ song.info | safe}}</p>
-    <p>Added {{ song.created_on }}</p>
-    <p>Due again on {{ song.next_due_date }}</p>
+    <div>Alright, let's practice:</div>
+    <h2 id="title">{{ song.title }}</h2>
+    <h3>by <span id="composer">{{ song.composer }}</span></h3>
+    <h4>arranged by <span id="arranger">{{ song.arranger }}</span></h4>
+    <div>Additional information
+        <p id="info">{{ song.info | safe}}</p>
+    </div>
+    <div>Added <span id="added">{{ song.created_on }}</span></div>
+    <div>bpm <span id="target-bpm">{{ song.target_bpm }}</span></div>
+    <div>Due again on <span id="due">{{ song.next_due_date }}</span></div>
+    {% if user.is_authenticated and song.musician == user %}
+    <div>
+        <a href="{% url 'song_edit' song.id %}">Edit</a>
+        <a href="#">Delete</a>
+    </div>
+    {% endif %}
 </div>
 
 {% endblock content %}
+
+{% block js %}
+<script src="{% static 'js/songs.js' %}"></script>
+{% endblock %}
