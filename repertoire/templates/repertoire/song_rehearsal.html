@@ -4,6 +4,7 @@
 {% block content %}
 
 <div>
+    {% if user.is_authenticated and song.musician == user %}
     <div>Alright, let's practice:</div>
     <h2 id="title">{{ song.title }}</h2>
     <h3>by <span id="composer">{{ song.composer }}</span></h3>
@@ -14,16 +15,14 @@
     <div>Added <span id="added">{{ song.created_on }}</span></div>
     <div>bpm <span id="target-bpm">{{ song.target_bpm }}</span></div>
     <div>Due again on <span id="due">{{ song.next_due_date }}</span></div>
-    {% if user.is_authenticated and song.musician == user %}
     <div>
-        <a href="{% url 'song_edit' song.id %}">Edit</a>
-        <a href="#">Delete</a>
+        <a href="{% url 'song_edit' song.id %}">Edit song</a>
+        <a href="{% url 'song_delete_warning' song.id %}">Delete song</a>
     </div>
+    {% else %}
+    <div>Sorry, but you are not authorized to view this song...</div>
     {% endif %}
 </div>
 
-{% endblock content %}
 
-{% block js %}
-<script src="{% static 'js/songs.js' %}"></script>
-{% endblock %}
+{% endblock content %}

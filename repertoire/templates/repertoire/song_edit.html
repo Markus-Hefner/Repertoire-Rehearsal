@@ -4,13 +4,13 @@
 
 {% block content %}
 
+{% if user.is_authenticated and song.musician == user %}
 <form id="addSongForm" method="post">
     {{ add_song_form | crispy }}
     {% csrf_token %}
-    <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Update</button> 
+    <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Update</button>
+{% else %}
+<div>Sorry, but you are not authorized to edit this song...</div>
+{% endif %}
 
 {% endblock content %}
-
-{% block js %}
-<script src="{% static 'js/songs.js' %}"></script>
-{% endblock %}

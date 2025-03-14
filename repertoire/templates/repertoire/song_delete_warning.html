@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% if user.is_authenticated and song.musician == user %}
+<div>
+    Do you really want to delete this song:
+</div>
+<h2 id="title">{{ song.title }}</h2>
+<h3>by <span id="composer">{{ song.composer }}</span></h3>
+<h4>arranged by <span id="arranger">{{ song.arranger }}</span></h4>
+<div>Additional information
+    <p id="info">{{ song.info | safe}}</p>
+</div>
+<div>Added <span id="added">{{ song.created_on }}</span></div>
+<div>bpm <span id="target-bpm">{{ song.target_bpm }}</span></div>
+<div>Due again on <span id="due">{{ song.next_due_date }}</span></div>
+<div>
+    <a href="{% url 'song_delete' song.id %}">Yes</a>
+    <a href="{% url 'song_rehearsal' song.id %}">No</a>
+</div>
+{% else %}
+<div>Sorry, but you are not authorized to delete this song...</div>
+{% endif %}
+
+{% endblock content %}

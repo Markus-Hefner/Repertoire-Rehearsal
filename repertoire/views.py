@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -81,3 +81,26 @@ def song_edit(request, id):
    )
 
 
+def song_delete_warning(request, id):
+   song = Song.objects.get(pk=id)
+
+   return render(
+      request,
+      "repertoire/song_delete_warning.html",
+      {
+         "song": song,
+      },
+   )
+
+
+def song_delete(request, id):
+   song = Song.objects.get(pk=id)
+
+   if song.musician == request.user:
+      song.delete()
+      messages.add_message(request, messages.SUCCESS, 'Song deleted!')
+      return redirect('repertoire')
+   else:
+      messages.add_message(request, messages.ERROR,
+                           'Sorry, you are not authorized to delete this song!')
+      return redirect('repertoire')
