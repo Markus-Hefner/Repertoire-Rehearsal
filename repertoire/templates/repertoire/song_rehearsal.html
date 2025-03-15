@@ -3,26 +3,37 @@
 
 {% block content %}
 
-<div>
-    {% if user.is_authenticated and song.musician == user %}
-    <div>Alright, let's practice:</div>
-    <h2 id="title">{{ song.title }}</h2>
-    <h3>by <span id="composer">{{ song.composer }}</span></h3>
-    <h4>arranged by <span id="arranger">{{ song.arranger }}</span></h4>
-    <div>Additional information
-        <p id="info">{{ song.info | safe}}</p>
-    </div>
-    <div>Added <span id="added">{{ song.created_on }}</span></div>
-    <div>bpm <span id="target-bpm">{{ song.target_bpm }}</span></div>
-    <div>Due again on <span id="due">{{ song.next_due_date }}</span></div>
-    <div>
-        <a href="{% url 'song_edit' song.id %}">Edit song</a>
-        <a href="{% url 'song_delete_warning' song.id %}">Delete song</a>
-    </div>
-    {% else %}
-    <div>Sorry, but you are not authorized to view this song...</div>
-    {% endif %}
+{% if user.is_authenticated and song.musician == user %}
+<div class="row">
+    <div class="col bg-danger text-light">Alright, let's practice:</div>
 </div>
+<div class="row">
+    <div class="col-12 col-md-6">
+        <h2 id="title">{{ song.title }}</h2>
+        <h3>by <span id="composer">{{ song.composer }}</span></h3>
+        <h4>arranged by <span id="arranger">{{ song.arranger }}</span></h4>
+    </div>
+    <div class="col-12 col-md-6">
+        <div>Additional information:
+            <p>{{ song.info | safe }}</p>
+        </div>
+        <p>Tempo: {{ song.target_bpm }} bpm</p>
+        <p>Added on {{ song.created_on }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
 
+        <a class="btn btn-secondary" href="{% url 'song_edit' song.id %}">Edit song</a>
+        <a class="btn btn-danger" href="{% url 'song_delete_warning' song.id %}">Delete song</a>
+    </div>
+</div>
+{% else %}
+<div class="row">
+    <div class="col">
+        <div>Sorry, but you are not authorized to view this song...</div>
+    </div>
+</div>
+{% endif %}
 
 {% endblock content %}

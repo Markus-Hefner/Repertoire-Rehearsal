@@ -47,16 +47,6 @@ def song_list(request):
       )
 
 
-   return render(
-      request,
-      "repertoire/song_list.html",
-      {
-         "songs": songs,
-         "add_song_form": add_song_form,
-      },
-   )
-
-
 @login_required
 def song_rehearsal(request, id):
     
@@ -126,3 +116,13 @@ def song_delete(request, id):
       messages.add_message(request, messages.ERROR,
                            'Sorry, you are not authorized to delete this song!')
       return redirect('repertoire')
+   
+
+# @login_required
+# def increase_interval(request, id):
+#    print("it worked")
+#    # song = Song.objects.get(pk=id)
+#    # current_due_date = song.next_due_date
+#    # if 
+
+#    return HttpResponseRedirect(reverse('song_rehearsal', args=[id]))

@@ -3,32 +3,55 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<!-- song_list.html content ends here -->
-
+<div class="row">
+    <div class="col text-danger">
+        <p>Welcome to Repertoire Rehearsal, your repertoire of performance-ready songs!</p>
+    </div>
+</div>
 {% if user.is_authenticated %}
-<p>You are logged in as {{ user }}</p>
+<div class="row">
+    <div class="col text-danger">
+        <p>You are logged in as {{ user }}</p>
+    </div>
+</div>
 <!-- Add a new song -->
-<h2>Add a new song</h2>
-<form id="addSongForm" method="post">
-    {{ add_song_form | crispy }}
-    {% csrf_token %}
-    <button id="addButton" type="submit">Add song</button>
-</form>
-<h2>Your Repertoire</h2>
+<div class="row bg-">
+    <div class="col-12 col-md-6 offset-md-3">
+        <h2 class="bg-danger text-light mt-3">Add a new song</h2>
+        <form id="addSongForm" method="post">
+            {{ add_song_form | crispy }}
+            {% csrf_token %}
+            <button class="btn btn-secondary" type="submit">Add song</button>
+        </form>
+        <div>* required</div>
+    </div>
+</div>
+<div class="row">
+    <div class="col mg-3 bg-danger m-3">
+        <h2 class="text-light">Your Repertoire</h2>
+    </div>
+</div>
 {% for song in songs %}
 {% if song.musician == user %}
-<div>
-    <a href="{% url 'song_rehearsal' song.id %}">
-        <h3>{{song.title}}</h3>
+<div class="row border">
+    <div class="col-12 col-md-6 bg-danger">
+        <a class="link-underline-light text-light" href="{% url 'song_rehearsal' song.id %}">
+            <h3>{{song.title}}</h3>
+        </a>
+    </div>
+    <div class="col-12 col-sm-6 text-danger">
         <p>by {{song.composer}}</p>
         <p>Arranged by {{song.arranger}}</p>
-        <p>Due again on {{ song.next_due_date }}</p>
-    </a>
+    </div>
 </div>
 {% endif %}
 {% endfor %}
 {% else %}
-<p>Sorry, you are currently not logged in<br>Please log in to see your repertoire.</p>
+<div class="row">
+    <div class="col">
+        <p>Sorry, you are currently not logged in<br>Please log in to see your repertoire.</p>
+    </div>
+</div>
 {% endif %}
 
 <!-- song_list.html content ends here -->

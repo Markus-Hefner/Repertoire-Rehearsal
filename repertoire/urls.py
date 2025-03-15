@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:id>/edit/', views.song_edit, name='song_edit'),
     path('<int:id>/delete_warning/', views.song_delete_warning, name='song_delete_warning'),
     path('<int:id>/delete/', views.song_delete, name='song_delete'),
+    # path('<int:id>/update/', views.increase_interval, name='increase_interval'),
 ]
