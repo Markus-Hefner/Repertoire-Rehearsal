@@ -22,35 +22,48 @@
 </head>
 
 <body>
+
+    <!-- Title & Navbar-->
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 justify-content-center bg-danger text-light">
-                <h1 class="text-center">Repertoire Rehearsal</h1>
+        <div class="row mx-lg-5">
+            <div class="col-12 justify-content-center russet white">
+                <h1 class="text-center py-2">Repertoire Rehearsal</h1>
             </div>
         </div>
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg justify-content-center">
             <ul class="nav">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link link-underline-danger text-danger {% if request.path == logout_url %}active{% endif %}" aria-current="page"
-                        href="{% url 'account_logout' %}">Logout</a>
+                    <a class="nav-link dark link-dark aria-current=" page" href="{% url 'repertoire' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dark link-dark {% if request.path == logout_url %}active{% endif %}"
+                        aria-current="page" href="{% url 'account_logout' %}">Logout</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link link-underline-danger text-danger {% if request.path == signup_url %}active{% endif %}" aria-current="page"
-                        href="{% url 'account_signup' %}">Register</a>
+                    <a class="nav-link dark link-dark {% if request.path == signup_url %}active{% endif %}"
+                        aria-current="page" href="{% url 'account_signup' %}">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-underline-danger text-danger {% if request.path == login_url %}active{% endif %}" aria-current="page"
-                        href="{% url 'account_login' %}">Login</a>
+                    <a class="nav-link dark link-dark {% if request.path == login_url %}active{% endif %}"
+                        aria-current="page" href="{% url 'account_login' %}">Login</a>
                 </li>
                 {% endif %}
             </ul>
         </nav>
+        <div class="row">
+            <div class="col dark">
+                <p class="text-center">Welcome to Repertoire Rehearsal, your library of performance-ready songs!</p>
+            </div>
+        </div>
+
+        <!-- Messages -->
         {% for message in messages %}
         <div class="row">
             <div class="col-12">
-                <div class="alert {{ message.tags }} alert-dismissible fade show text-danger" id="msg" role="alert">
+                <div class="alert {{ message.tags }} alert-dismissible fade show text-russet text-center" id="msg"
+                    role="alert">
                     {{ message | safe }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
@@ -58,10 +71,8 @@
         </div>
         {% endfor %}
 
-        <!-- If-else statement must come here: either log in/sign up form or repertoire (that is, the block content)-->
-
         {% block content %}
-        <!-- Content Goes here -->
+        <!-- Content goes here -->
         {% endblock content %}
 
     </div>

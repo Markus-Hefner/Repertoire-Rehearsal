@@ -65,8 +65,6 @@ def song_rehearsal(request, id):
 
 @login_required
 def song_edit(request, id):
-   # queryset = Song.objects.all()
-   # song = get_object_or_404(queryset, id=id)
 
    song = Song.objects.get(pk=id)
    add_song_form = AddSongForm(request.POST or None, instance=song)
