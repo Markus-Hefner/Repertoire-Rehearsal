@@ -1,0 +1,33 @@
+.russet {
+    background-color: #ce3232;
+}
+
+.text-russet {
+    color: #ce3232;
+}
+
+.link-russet:hover {
+    color: #ce3232;
+    text-decoration: underline;
+    text-decoration-color: #ce3232;
+}
+
+.link-white:hover {
+    color: #ffffff;
+    text-decoration: underline;
+    text-decoration-color: #ffffff;
+}
+
+.link-dark:hover {
+    color: #202020;
+    text-decoration: underline;
+    text-decoration-color: #202020;
+}
+
+.white {
+    color:#ffffff;
+}
+
+.dark {
+    color: #202020;
+}
