@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
-from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -7,12 +6,6 @@ from .models import Song
 from .forms import AddSongForm
 
 # Create your views here.
-
-
-# class SongList(generic.ListView):
-#    queryset = Song.objects.all()
-#    template_name = "song_list.html"
-
 
 def song_list(request):
    """
