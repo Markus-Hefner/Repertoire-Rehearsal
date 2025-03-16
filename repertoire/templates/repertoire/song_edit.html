@@ -7,6 +7,13 @@
 
 {% if user.is_authenticated and song.musician == user %}
 
+<!-- Information about who is logged in -->
+<div class="row">
+    <div class="col text-dark">
+        <p class="text-center">You are logged in as {{ user }}</p>
+    </div>
+</div>
+
 <!-- Edit song form -->
 <div class="row mx-3 mx-md-0">
     <div class="col-12 col-md-6 offset-md-3">
