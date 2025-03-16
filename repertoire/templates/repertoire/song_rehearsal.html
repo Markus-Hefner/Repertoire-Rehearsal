@@ -24,7 +24,7 @@
     </div>
     <div class="col-12 col-md-6 my-3">
         <div class="dark">Additional information:
-            <p>{{ song.info | safe }}</p>
+            <p>{{ song.info | linebreaks }}</p>
         </div>
         <p class="dark">Tempo: {{ song.target_bpm }} bpm</p>
         <p class="dark">Added on {{ song.created_on }}</p>

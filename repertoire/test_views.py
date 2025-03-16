@@ -20,7 +20,7 @@ class Test(TestCase):
                          arranger="Original", info="",
                          musician=self.user, target_bpm="115")
         self.song.save()
-        
+
     def test_render_song_list_page_with_add_song_form(self):
         """
         Test for rendering the correct template with the correct songs
@@ -35,7 +35,7 @@ class Test(TestCase):
         self.assertIn(b"Original", response.content)
         self.assertIsInstance(
             response.context['add_song_form'], AddSongForm)
-        
+
     def test_adding_song(self):
         """Test for adding a new song"""
         self.client.login(username="myUsername", password="myPassword")
