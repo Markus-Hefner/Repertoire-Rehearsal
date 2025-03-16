@@ -16,6 +16,13 @@
     <!-- Title -->
     <title>Repertoire Rehearsal</title>
 
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
@@ -37,7 +44,7 @@
         <!-- Announcements -->
         <div class="row mx-lg-5">
             <div class="col-12 justify-content-center text-center alert alert-warning pb-0 pt-1">
-                <p><strong>Coming soon:</strong><br>Our Practice Coach will help get to performance-ready pieces even
+                <p><strong>Coming soon:</strong><br>Our Practice Coach will help you get pieces performance-ready even
                     faster!
                 </p>
             </div>
@@ -92,7 +99,7 @@
         {% endfor %}
 
         <!-- Main content -->
-        <main class="pb-5">
+        <main>
             {% block content %}
             <!-- Content goes here -->
             {% endblock content %}

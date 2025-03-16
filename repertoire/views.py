@@ -15,7 +15,35 @@ from .forms import AddSongForm
 
 
 def song_list(request):
+   """
+   If user is logged in:
+      Returns an instance of the "AddSongForm"-form from 
+      repertoire/forms.py to add new songs and displays it.
 
+      Displays all by this user added songs in a list.
+
+   If user is not logged in:
+      Displays no form and no songs.
+      Displays the alternative text from the HTML template.
+
+   **Context**
+
+   If user is logged in:
+      ``songs``
+         An ordered list of all instances of the "Song"-model
+         from repertoire/models.py.
+      ``add_song_form``
+         An instance of the "AddSongForm"-form from 
+         repertoire/forms.py.
+
+   If user is not logged in:
+      No context, just the template.
+
+   **Template:**
+
+   If user is logged in or not logged in.
+      repertoire/templates/repertoire/song_list.html
+   """
    if request.method == "POST":
       add_song_form = AddSongForm(data=request.POST)
       if add_song_form.is_valid():
@@ -49,8 +77,20 @@ def song_list(request):
 
 @login_required
 def song_rehearsal(request, id):
-    
-   # queryset = Song.objects.filter(musician==User)
+   """
+   Displays an instance of the "Song"-model
+   from /repertoire/models.py.
+
+   **Context**
+
+   ``song``
+      An individual instance of the "Song"-model
+      from /repertoire/models.py.
+
+   **Template:**
+
+   repertoire/templates/repertoire/song_rehearsal.html
+   """
    queryset = Song.objects.all()
    song = get_object_or_404(queryset, id=id)
 
@@ -65,7 +105,24 @@ def song_rehearsal(request, id):
 
 @login_required
 def song_edit(request, id):
+   """
+   Displays an individual instance of the "Song"-model
+   from repertoire/models.py for edit and update
+   the database.
 
+   **Context**
+
+   ``song``
+      An individual instance of the "Song"-model
+      from repertoire/models.py.
+   ``add_song_form``
+      An instance of the "AddSongForm"-form from 
+      repertoire/forms.py.
+
+   **Template**
+
+   repertoire/templates/repertoire/song_edit.html
+   """
    song = Song.objects.get(pk=id)
    add_song_form = AddSongForm(request.POST or None, instance=song)
 
@@ -91,6 +148,20 @@ def song_edit(request, id):
 
 @login_required
 def song_delete_warning(request, id):
+   """
+   Displays an individual instance of the "Song"-model
+   from repertoire/models.py to varify deletion.
+
+   **Context**
+
+   ``song``
+      An individual instance of the "Song"-model
+      from repertoire/models.py.
+
+   **Template**
+
+   repertoire/templates/repertoire/song_delete_warning.html
+   """
    song = Song.objects.get(pk=id)
 
    return render(
@@ -104,6 +175,18 @@ def song_delete_warning(request, id):
 
 @login_required
 def song_delete(request, id):
+   """
+   Deletes an individual instance of the "Song"-model
+   from repertoire/models.py from the database.
+
+   **Context**
+
+   None
+
+   **Template**
+
+   None
+   """
    song = Song.objects.get(pk=id)
 
    if song.musician == request.user:
@@ -115,12 +198,3 @@ def song_delete(request, id):
                            'Sorry, you are not authorized to delete this song!')
       return redirect('repertoire')
    
-
-# @login_required
-# def increase_interval(request, id):
-#    print("it worked")
-#    # song = Song.objects.get(pk=id)
-#    # current_due_date = song.next_due_date
-#    # if 
-
-#    return HttpResponseRedirect(reverse('song_rehearsal', args=[id]))

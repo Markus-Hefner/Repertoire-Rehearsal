@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Song(models.Model):
+    """
+    Stores a single song entry related to the "auth.User"-model.
+    """
     title = models.CharField(max_length=150,)
     composer = models.CharField(max_length=150, blank=True)
     arranger = models.CharField(max_length=150, blank=True)

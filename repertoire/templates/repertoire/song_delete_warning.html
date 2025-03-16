@@ -5,12 +5,16 @@
 {% block content %}
 
 {% if user.is_authenticated and song.musician == user %}
+
+<!-- Warning message-->
 <div class="row justify-content-center">
     <div class="col-4 russet white font-weight-bold text-uppercase p-3 text-center">DELETE SONG?</div>
 </div>
 <div class="row">
-    <div class="col russet white text-center py-2 mx-5 my-3">Do you really want to delete this song:</div>
+    <div class="col russet white text-center py-2 mx-5 my-3">This can not be undone!<br>Do you really want to delete this song:</div>
 </div>
+
+<!-- Song information with "Yes"- and "No"-buttons -->
 <div class="row mx-5 justify-content-center">
     <div class="col-12 col-md-6 my-3">
         <h2 class="dark">{{ song.title }}</h2>
