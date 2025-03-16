@@ -10,20 +10,6 @@ from .forms import AddSongForm
 
 def song_list(request):
     """
-    Returns all published posts in :model:`blog.Post`
-    and displays them in a page of six posts.
-    **Context**
-
-    ``queryset``
-        All published instances of :model:`blog.Post`
-    ``paginate_by``
-        Number of posts per page.
-
-    **Template:**
-
-    :template:`blog/index.html`
-    """
-    """
     If user is logged in:
         Returns an instance of :form:`repertoire.AddSongForm`
         and displays it.
