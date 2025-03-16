@@ -10,9 +10,23 @@ from .forms import AddSongForm
 
 def song_list(request):
     """
+    Returns all published posts in :model:`blog.Post`
+    and displays them in a page of six posts.
+    **Context**
+
+    ``queryset``
+        All published instances of :model:`blog.Post`
+    ``paginate_by``
+        Number of posts per page.
+
+    **Template:**
+
+    :template:`blog/index.html`
+    """
+    """
     If user is logged in:
-        Returns an instance of the "AddSongForm"-form from
-        repertoire/forms.py to add new songs and displays it.
+        Returns an instance of :form:`repertoire.AddSongForm`
+        and displays it.
 
         Displays all by this user added songs in a list.
 
@@ -24,19 +38,17 @@ def song_list(request):
 
     If user is logged in:
         ``songs``
-            An ordered list of all instances of the "Song"-model
-            from repertoire/models.py.
+            An ordered list of all instances of :model:`repertoire.Song`
         ``add_song_form``
-            An instance of the "AddSongForm"-form from
-            repertoire/forms.py.
+            An instance of :form:`repertoire.AddSongForm`
 
     If user is not logged in:
         No context, just the template.
 
     **Template:**
 
-    If user is logged in or not logged in.
-        repertoire/templates/repertoire/song_list.html
+    If user is logged in or not:
+        :template:`repertoire.song_list.html`
     """
     if request.method == "POST":
         add_song_form = AddSongForm(data=request.POST)
@@ -72,18 +84,16 @@ def song_list(request):
 @login_required
 def song_rehearsal(request, id):
     """
-    Displays an instance of the "Song"-model
-    from /repertoire/models.py.
+    Displays an instance of :model:`repertoire.Song`
 
     **Context**
 
     ``song``
-        An individual instance of the "Song"-model
-        from /repertoire/models.py.
+        An individual instance of :model:`repertoire.Song`
 
     **Template:**
 
-    repertoire/templates/repertoire/song_rehearsal.html
+    :template:`repertoire.song_rehearsal.html`
     """
     queryset = Song.objects.all()
     song = get_object_or_404(queryset, id=id)
@@ -100,22 +110,19 @@ def song_rehearsal(request, id):
 @login_required
 def song_edit(request, id):
     """
-    Displays an individual instance of the "Song"-model
-    from repertoire/models.py for edit and update
-    the database.
+    Displays an individual instance of :model:`repertoire.Song`
+    for editing and updating the database.
 
     **Context**
 
     ``song``
-        An individual instance of the "Song"-model
-        from repertoire/models.py.
+        An individual instance of :model:`repertoire.Song`
     ``add_song_form``
-        An instance of the "AddSongForm"-form from
-        repertoire/forms.py.
+        An instance of :form:`repertoire.AddSongForm`
 
     **Template**
 
-    repertoire/templates/repertoire/song_edit.html
+    :template:`repertoire.song_edit.html`
     """
     song = Song.objects.get(pk=id)
     add_song_form = AddSongForm(request.POST or None, instance=song)
@@ -143,18 +150,17 @@ def song_edit(request, id):
 @login_required
 def song_delete_warning(request, id):
     """
-    Displays an individual instance of the "Song"-model
-    from repertoire/models.py to varify deletion.
+    Displays an individual instance of :model:`repertoire.Song`
+    to varify deletion.
 
     **Context**
 
     ``song``
-        An individual instance of the "Song"-model
-        from repertoire/models.py.
+        An individual instance of :model:`repertoire.Song`
 
     **Template**
 
-    repertoire/templates/repertoire/song_delete_warning.html
+    :template:`repertoire.song_delete_warning.html`
     """
     song = Song.objects.get(pk=id)
 
@@ -170,8 +176,8 @@ def song_delete_warning(request, id):
 @login_required
 def song_delete(request, id):
     """
-    Deletes an individual instance of the "Song"-model
-    from repertoire/models.py from the database.
+    Deletes an individual instance of :model:`repertoire.Song`
+    from the database.
 
     **Context**
 
