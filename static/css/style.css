@@ -1,9 +1,21 @@
+.lato {
+    font-family: 'Lato', sans-serif;
+}
+
 .russet {
     background-color: #ce3232;
 }
 
 .text-russet {
     color: #ce3232;
+}
+
+.white {
+    color:#ffffff;
+}
+
+.dark {
+    color: #202020;
 }
 
 .link-russet:hover {
@@ -22,12 +34,4 @@
     color: #202020;
     text-decoration: underline;
     text-decoration-color: #202020;
-}
-
-.white {
-    color:#ffffff;
-}
-
-.dark {
-    color: #202020;
 }

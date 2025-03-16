@@ -12,8 +12,8 @@
 </div>
 
 <!-- Add a new song form -->
-<div class="row mx-3 mx-md-0">
-    <div class="col-12 col-md-6 offset-md-3">
+<div class="row mx-3 mx-md-0 justify-content-center">
+    <div class="col-12 col-md-9 col-lg-6 ">
         <h2 class="russet white mt-3 text-center py-2">Add a new song</h2>
         <form id="addSongForm" method="post">
             {{ add_song_form | crispy }}
@@ -50,9 +50,17 @@
 {% else %}
 
 <!-- Message for not logged-in visitors -->
+<div class="row mx-3 mx-md-0 justify-content-center">
+    <div class="col-12 col-md-9 col-lg-6 russet pt-2 my-3">
+        <p class="text-center white">Repertoire Rehearsal is the place where you can collect all your ready-to-perform musical pieces. Your
+            central database with
+            all the information about the piece you think you need, as well as performance notes to get it right on the
+            first go!</p>
+    </div>
+</div>
 <div class="row">
     <div class="col">
-        <div class="text-russet font-weight-bold text-center my-3">Sorry, you are currently not logged in<br>Please log
+        <div class="text-russet font-weight-bold text-center my-5">Sorry, you are currently not logged in<br>Please log
             in to see your repertoire.</div>
     </div>
 </div>
