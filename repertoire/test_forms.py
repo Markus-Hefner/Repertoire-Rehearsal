@@ -17,7 +17,7 @@ class TestAddSongFormTitleFailing(TestCase):
     def test_form_is_invalid(self):
         """ Test for required field (field not provided -> should fail)"""
         add_song_form = AddSongForm({'title': ''})
-        self.assertTrue(add_song_form.is_valid(), msg="Form is not valid")
+        self.assertFalse(add_song_form.is_valid(), msg="Form is not valid")
 
 
 class TestAddSongFormFourFields(TestCase):

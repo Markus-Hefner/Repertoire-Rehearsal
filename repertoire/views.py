@@ -37,15 +37,20 @@ def song_list(request):
         :template:`repertoire.song_list.html`
     """
     if request.method == "POST":
-        add_song_form = AddSongForm(data=request.POST)
-        if add_song_form.is_valid():
-            song = add_song_form.save(commit=False)
-            song.musician = request.user
-            song.save()
-            messages.add_message(
-                request, messages.SUCCESS,
-                'Song added!'
-            )
+        if not request.user.is_authenticated:
+            messages.add_message(request, messages.ERROR,
+                                 'You have to login or register first!')
+            return redirect('repertoire')
+        else:
+            add_song_form = AddSongForm(data=request.POST)
+            if add_song_form.is_valid():
+                song = add_song_form.save(commit=False)
+                song.musician = request.user
+                song.save()
+                messages.add_message(
+                    request, messages.SUCCESS,
+                    'Song added!'
+                )
 
     add_song_form = AddSongForm()
 
