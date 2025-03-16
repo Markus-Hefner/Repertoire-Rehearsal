@@ -6,27 +6,27 @@
 
 {% block content %}
 <div class="row justify-content-center">
-  <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xxl-4 russet white my-3 text-center py-2">
-    <h2>Sign Out</h2>
-  </div>
+	<div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xxl-4 russet white my-3 text-center py-2">
+		<h2>Sign Out</h2>
+	</div>
 </div>
 
 <!-- Logout confirmation -->
 <div class="row mx-5 mx-sm-0 justify-content-center">
-  <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xxl-4">
-    <p class="text-center">{% trans 'Are you sure you want to sign out?' %}</p>
+	<div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xxl-4">
+		<p class="text-center">{% trans 'Are you sure you want to sign out?' %}</p>
 
-    <form method="post" action="{% url 'account_logout' %}">
-      {% csrf_token %}
-      {% if redirect_field_value %}
-      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-      {% endif %}
-      <div class="text-center">
-        <button class="btn btn-secondary" type="submit">{% trans 'Sign Out' %}</button>
-      </div>
-    </form>
+		<form method="post" action="{% url 'account_logout' %}">
+			{% csrf_token %}
+			{% if redirect_field_value %}
+			<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+			{% endif %}
+			<div class="text-center">
+				<button class="btn btn-secondary" type="submit">{% trans 'Sign Out' %}</button>
+			</div>
+		</form>
 
-  </div>
+	</div>
 </div>
 
 {% endblock content %}

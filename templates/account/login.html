@@ -7,24 +7,24 @@
 
 {% block content %}
 <div class="row justify-content-center">
-  <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xxl-4 russet white my-3 text-center py-2">
-    <h2>Sign In</h2>
-  </div>
+	<div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xxl-4 russet white my-3 text-center py-2">
+		<h2>Sign In</h2>
+	</div>
 </div>
 {% get_providers as socialaccount_providers %}
 
 {% if socialaccount_providers %}
 <p>{% blocktrans with site.name as site_name %}Please sign in with one
-  of your existing third party accounts. Or, <a class="text-russet link-russet" href="{{ signup_url }}">sign up</a>
-  for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+	of your existing third party accounts. Or, <a class="text-russet link-russet" href="{{ signup_url }}">sign up</a>
+	for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 
 <div class="socialaccount_ballot">
 
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
+	<ul class="socialaccount_providers">
+		{% include "socialaccount/snippets/provider_list.html" with process="login" %}
+	</ul>
 
-  <div class="login-or">{% trans 'or' %}</div>
+	<div class="login-or">{% trans 'or' %}</div>
 
 </div>
 
@@ -34,21 +34,21 @@
 
 <!-- Login form -->
 <div class="row mx-5 mx-sm-0 justify-content-center">
-  <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xxl-4">
-    <p>{% blocktrans %}If you have not created an account yet, then please
-      <a class="text-russet link-russet" href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
-    </p>
-    {% endif %}
+	<div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xxl-4">
+		<p>{% blocktrans %}If you have not created an account yet, then please
+			<a class="text-russet link-russet" href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
+		</p>
+		{% endif %}
 
-    <form class="login" method="POST" action="{% url 'account_login' %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      {% if redirect_field_value %}
-      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-      {% endif %}
-      <button class="primaryAction btn btn-secondary" type="submit">{% trans "Sign In" %}</button>
-    </form>
-  </div>
+		<form class="login" method="POST" action="{% url 'account_login' %}">
+			{% csrf_token %}
+			{{ form.as_p }}
+			{% if redirect_field_value %}
+			<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+			{% endif %}
+			<button class="primaryAction btn btn-secondary" type="submit">{% trans "Sign In" %}</button>
+		</form>
+	</div>
 </div>
 
 {% endblock content %}

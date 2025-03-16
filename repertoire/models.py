@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+
+
 class Song(models.Model):
     """
     Stores a single song entry related to the "auth.User"-model.
@@ -18,4 +20,4 @@ class Song(models.Model):
     next_due_date = models.DateField(null=True)
 
     def __str__(self):
-        return f"{self.title} | by {self.composer} | arranged by {self.arranger}"
+        return f"{self.title} by {self.composer} | arranged by {self.arranger}"
