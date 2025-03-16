@@ -86,18 +86,20 @@
                 <div class="alert {{ message.tags }} alert-dismissible fade show text-russet text-center" id="msg"
                     role="alert">
                     {{ message | safe }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
         </div>
         {% endfor %}
 
-        {% block content %}
-        <!-- Content goes here -->
-        {% endblock content %}
+        <!-- Main content -->
+        <main class="pb-5">
+            {% block content %}
+            <!-- Content goes here -->
+            {% endblock content %}
+        </main>
 
         <!-- Footer -->
-        <div class="row footer mx-lg-5 fixed-bottom">
+        <div class="row footer mx-lg-5">
             <div class="col-12 justify-content-center russet white">
                 <footer>
                     <p class="text-center pt-3">Meet other musicians on our social plattforms:</p>
