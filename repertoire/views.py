@@ -35,7 +35,7 @@ def song_list(request):
       "repertoire/song_list.html"
       )
    else:
-      queryset = Song.objects.all()
+      queryset = Song.objects.all().order_by("title")
       songs = queryset
       return render(
          request,
