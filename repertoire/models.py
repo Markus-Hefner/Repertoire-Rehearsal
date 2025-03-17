@@ -17,7 +17,7 @@ class Song(models.Model):
     )
     created_on = models.DateTimeField(auto_now_add=True)
     target_bpm = models.IntegerField(null=True, blank=True)
-    next_due_date = models.DateField(null=True)
+    next_due_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.title} by {self.composer} | arranged by {self.arranger}"
